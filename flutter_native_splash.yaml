@@ -1,0 +1,12 @@
+flutter_native_splash:
+  android: true
+  ios: true
+
+  color: "#69A03A"
+  image: "assets/mix_fruit.png"
+  branding: "assets/fruit_market.png"
+
+  android_12:
+    color: "#69A03A"
+    image: "assets/mix_fruit.png"
+    branding: "assets/fruit_market.png"
