@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fruit_market/features/onboarding/presentation/views/onboarding_view.dart';
 
 void main() {
   runApp(const FruitMarket());
@@ -16,6 +17,7 @@ class FruitMarket extends StatelessWidget {
       splitScreenMode: true,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        home: OnboardingView(),
       ),
     );
   }
