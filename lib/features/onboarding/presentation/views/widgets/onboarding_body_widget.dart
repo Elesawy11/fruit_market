@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fruit_market/core/utils/routes.dart';
 import 'package:fruit_market/core/widgets/app_text_button.dart';
-import 'package:fruit_market/features/home/presentation/views/home_view.dart';
 import 'package:fruit_market/features/onboarding/presentation/cubits/cubit/onboarding_cubit.dart';
 import 'package:fruit_market/features/onboarding/presentation/views/constatnt.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/spacer.dart';
 import '../../../../../core/utils/styles.dart';
@@ -34,12 +35,7 @@ class OnboardingBodyWidget extends StatelessWidget {
                   ),
                   width: double.minPositive,
                   height: double.minPositive,
-                  onPressed: () => Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const HomeView(),
-                    ),
-                  ),
-                )
+                  onPressed: () => context.pushReplacement(Routes.homeView))
               : null,
         ),
         verticalSpace(80),

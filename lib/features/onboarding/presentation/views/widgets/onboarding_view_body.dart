@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../home/presentation/views/home_view.dart';
+import 'package:fruit_market/core/utils/routes.dart';
+import 'package:go_router/go_router.dart';
 import '../../cubits/cubit/onboarding_cubit.dart';
 import 'onboarding_body_widget.dart';
 
@@ -20,13 +20,7 @@ class OnboardingViewBody extends StatelessWidget {
       child: BlocListener<OnboardingCubit, OnboardingState>(
         listener: (context, state) {
           if (state is LastIndex) {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  return const HomeView();
-                },
-              ),
-            );
+            context.pushReplacement(Routes.homeView);
           }
         },
         child: PageView(
