@@ -16,6 +16,9 @@ class FruitMarket extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       child: MaterialApp.router(
+        theme: ThemeData(
+          colorSchemeSeed: Colors.white,
+        ),
         routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,
       ),

@@ -13,7 +13,7 @@ class AppTextButton extends StatelessWidget {
     // this.textColor,
     this.width,
     this.height,
-    this.textStyle,
+    this.textStyle, this.borderRadius,
   });
   final void Function()? onPressed;
   final String text;
@@ -21,22 +21,23 @@ class AppTextButton extends StatelessWidget {
   // final Color? textColor;
   final double? width, height;
   final TextStyle? textStyle;
+  final BorderRadiusGeometry? borderRadius;
   @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: onPressed,
       style: TextButton.styleFrom(
-        backgroundColor: backgroundColor ?? ColorManger.green69,
+        backgroundColor: backgroundColor ?? ColorManager.green69,
         minimumSize: Size(width ?? 146.w, height ?? 48.h),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(5.r),
+          borderRadius:borderRadius?? BorderRadius.circular(5.r),
         ),
       ),
       child: Text(
         text,
         style: textStyle ??
             Styles.font14Medium.copyWith(
-              color:  Colors.white,
+              color: Colors.white,
             ),
       ),
     );
