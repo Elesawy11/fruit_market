@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruit_market/core/widgets/app_text_button.dart';
+import 'package:fruit_market/features/home/presentation/views/home_view.dart';
+import 'package:fruit_market/features/onboarding/presentation/cubits/cubit/onboarding_cubit.dart';
 import 'package:fruit_market/features/onboarding/presentation/views/constatnt.dart';
-
-import '../../../../../core/utils/assets.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/spacer.dart';
 import '../../../../../core/utils/styles.dart';
@@ -12,10 +12,10 @@ import 'onboarding_points_widget.dart';
 class OnboardingBodyWidget extends StatelessWidget {
   const OnboardingBodyWidget({
     super.key,
-    required this.selectedIndex,
+    required this.cubit,
   });
 
-  final int selectedIndex;
+  final OnboardingCubit cubit;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class OnboardingBodyWidget extends StatelessWidget {
       children: [
         Align(
           alignment: Alignment.centerRight,
-          child: selectedIndex < onboardingImages.length - 1
+          child: cubit.selectedIndex < onboardingList.length - 1
               ? AppTextButton(
                   text: 'Skip',
                   backgroundColor: Theme.of(context).canvasColor,
@@ -34,34 +34,42 @@ class OnboardingBodyWidget extends StatelessWidget {
                   ),
                   width: double.minPositive,
                   height: double.minPositive,
-                  onPressed: () {},
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const HomeView(),
+                    ),
+                  ),
                 )
               : null,
         ),
         verticalSpace(80),
         Image.asset(
-          Assets.assetsOnboarding1,
+          onboardingList[cubit.selectedIndex][0],
           width: 272.w,
           height: 210.h,
         ),
         verticalSpace(48),
         Text(
-          'E Shopping',
+          onboardingList[cubit.selectedIndex][1],
           style: Styles.font20SemiBold,
         ),
         verticalSpace(16),
         Text(
-          'Explore  top organic fruits & grab them',
-          style: Styles.font15Regular.copyWith(color: ColorManger.grey78),
+          onboardingList[cubit.selectedIndex][2],
+          style: Styles.font15Regular.copyWith(
+            color: ColorManger.grey78,
+          ),
         ),
         verticalSpace(90),
         OnboardingPointsWidget(
-          selectedIndex: selectedIndex,
+          selectedIndex: cubit.selectedIndex,
         ),
         verticalSpace(90),
         AppTextButton(
-          text: 'Next',
-          onPressed: () {},
+          text: cubit.selectedIndex == onboardingList.length - 1
+              ? 'Get Started'
+              : 'Next',
+          onPressed: () => cubit.increaseIndex(),
         ),
       ],
     );

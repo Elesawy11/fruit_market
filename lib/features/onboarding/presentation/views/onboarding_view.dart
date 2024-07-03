@@ -1,34 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'widgets/onboarding_body_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruit_market/features/onboarding/presentation/cubits/cubit/onboarding_cubit.dart';
+import 'widgets/onboarding_view_body.dart';
 
-class OnboardingView extends StatefulWidget {
+class OnboardingView extends StatelessWidget {
   const OnboardingView({super.key});
 
   @override
-  State<OnboardingView> createState() => _OnboardingViewState();
-}
-
-class _OnboardingViewState extends State<OnboardingView> {
-  int selectedIndex = 0;
-  PageController pageController = PageController();
-  @override
-  void initState() {
-    super.initState();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        child: PageView(
-          children: [
-            OnboardingBodyWidget(selectedIndex: selectedIndex),
-            OnboardingBodyWidget(selectedIndex: selectedIndex),
-          ],
-        ),
+    return BlocProvider(
+      create: (context) => OnboardingCubit()..systemUi(),
+      child: Builder(
+        builder: (context) {
+          final OnboardingCubit cubit =
+              BlocProvider.of<OnboardingCubit>(context);
+          return Scaffold(
+            body: OnboardingViewBody(
+              cubit: cubit,
+            ),
+          );
+        },
       ),
     );
   }

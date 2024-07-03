@@ -17,7 +17,7 @@ class OnboardingPointsWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
-        onboardingImages.length,
+        onboardingList.length,
         (index) => Container(
           margin: const EdgeInsets.only(right: 8),
           height: 10.h,
@@ -27,8 +27,7 @@ class OnboardingPointsWidget extends StatelessWidget {
               color: ColorManger.green69,
             ),
             borderRadius: BorderRadius.circular(5),
-            color:
-                selectedIndex == index ? ColorManger.green69 : Colors.white,
+            color: selectedIndex == index ? ColorManger.green69 : Colors.white,
           ),
         ),
       ),
