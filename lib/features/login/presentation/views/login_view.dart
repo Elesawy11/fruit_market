@@ -7,6 +7,7 @@ import 'package:fruit_market/core/utils/routes.dart';
 import 'package:fruit_market/core/utils/spacer.dart';
 import 'package:fruit_market/core/utils/styles.dart';
 import 'package:fruit_market/core/widgets/app_text_button.dart';
+import 'package:fruit_market/features/login/data/repo/google_auth.dart';
 import 'package:go_router/go_router.dart';
 
 import 'widgets/login_with_widget.dart';
@@ -40,6 +41,10 @@ class LoginView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 LoginWithWidget(
+                  onTap:() async{
+                    await FirebaseServices().signInWithGoogle();
+                    context.go(Routes.homeView);
+                  },
                   image: IconsImage.google,
                   text: 'Log In with',
                 ),
