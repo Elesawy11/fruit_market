@@ -20,7 +20,7 @@ class OnboardingViewBody extends StatelessWidget {
       child: BlocListener<OnboardingCubit, OnboardingState>(
         listener: (context, state) {
           if (state is LastIndex) {
-            context.pushReplacement(Routes.homeView);
+            context.pushReplacement(Routes.loginView);
           }
         },
         child: PageView(

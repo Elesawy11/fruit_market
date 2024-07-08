@@ -24,10 +24,10 @@ class OnboardingPointsWidget extends StatelessWidget {
           width: 10.w,
           decoration: BoxDecoration(
             border: Border.all(
-              color: ColorManger.green69,
+              color: ColorManager.green69,
             ),
             borderRadius: BorderRadius.circular(5),
-            color: selectedIndex == index ? ColorManger.green69 : Colors.white,
+            color: selectedIndex == index ? ColorManager.green69 : Colors.white,
           ),
         ),
       ),

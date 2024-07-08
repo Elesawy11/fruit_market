@@ -31,11 +31,12 @@ class OnboardingBodyWidget extends StatelessWidget {
                   text: 'Skip',
                   backgroundColor: Theme.of(context).canvasColor,
                   textStyle: Styles.font14Medium.copyWith(
-                    color: ColorManger.grey89,
+                    color: ColorManager.grey89,
                   ),
                   width: double.minPositive,
                   height: double.minPositive,
-                  onPressed: () => context.pushReplacement(Routes.homeView))
+                  onPressed: () => context.pushReplacement(Routes.loginView),
+                )
               : null,
         ),
         verticalSpace(80),
@@ -53,7 +54,7 @@ class OnboardingBodyWidget extends StatelessWidget {
         Text(
           onboardingList[cubit.selectedIndex][2],
           style: Styles.font15Regular.copyWith(
-            color: ColorManger.grey78,
+            color: ColorManager.grey78,
           ),
         ),
         verticalSpace(90),
