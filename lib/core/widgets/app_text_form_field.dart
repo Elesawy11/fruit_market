@@ -18,6 +18,7 @@ class AppTextFormField extends StatelessWidget {
   final Function(String?) validator;
   final Widget? prefixIcon;
   final int? maxLines;
+  final double? radius;
   final void Function()? onTap;
   final void Function(PointerDownEvent)? onTapOutside;
   const AppTextFormField({
@@ -37,6 +38,7 @@ class AppTextFormField extends StatelessWidget {
     this.maxLines = 1,
     this.onTap,
     this.onTapOutside,
+    this.radius,
   });
 
   @override
@@ -44,35 +46,41 @@ class AppTextFormField extends StatelessWidget {
     return TextFormField(
       onTapOutside: onTapOutside,
       onTap: onTap,
+     
       controller: controller,
       maxLines: maxLines,
       decoration: InputDecoration(
-          isDense: true,
-          contentPadding: contentPadding ??
-              EdgeInsets.symmetric(horizontal: 20.w, vertical: 18.h),
-          focusedBorder: focusedBorder ??
-              outLineBorder(
-                color: ColorManager.greyCC,
-              ),
-          enabledBorder: enabledBorder ??
-              outLineBorder(
-                color: ColorManager.greyCC,
-              ),
-          errorBorder: outLineBorder(
-            color: Colors.red,
-          ),
-          focusedErrorBorder: outLineBorder(
-            color: Colors.red,
-          ),
-          hintStyle: hintStyle ??
-              Styles.font14Regular.copyWith(
-                color: ColorManager.grey70,
-              ),
-          hintText: hintText,
-          suffixIcon: suffixIcon,
-          fillColor: backgroundColor ?? Theme.of(context).canvasColor,
-          filled: true,
-          prefixIcon: prefixIcon),
+        isDense: true,
+        contentPadding: contentPadding ??
+            EdgeInsets.symmetric(horizontal: 20.w, vertical: 18.h),
+        focusedBorder: focusedBorder ??
+            outLineBorder(
+              color: ColorManager.greyCC,
+              radius: radius,
+            ),
+        enabledBorder: enabledBorder ??
+            outLineBorder(
+              color: ColorManager.greyCC,
+              radius: radius,
+            ),
+        errorBorder: outLineBorder(
+          color: Colors.red,
+          radius: radius,
+        ),
+        focusedErrorBorder: outLineBorder(
+          color: Colors.red,
+          radius: radius,
+        ),
+        hintStyle: hintStyle ??
+            Styles.font14Regular.copyWith(
+              color: ColorManager.grey70,
+            ),
+        hintText: hintText,
+        suffixIcon: suffixIcon,
+        fillColor: backgroundColor ?? Theme.of(context).canvasColor,
+        filled: true,
+        prefixIcon: prefixIcon,
+      ),
       obscureText: isObscureText ?? false,
       style: Styles.font14Regular.copyWith(
         fontWeight: FontWeightHelper.medium,
@@ -84,13 +92,13 @@ class AppTextFormField extends StatelessWidget {
     );
   }
 
-  OutlineInputBorder outLineBorder({required Color color}) {
+  OutlineInputBorder outLineBorder({required Color color, double? radius}) {
     return OutlineInputBorder(
       borderSide: BorderSide(
         color: color,
         width: 1.3,
       ),
-      borderRadius: BorderRadius.circular(16.0.r),
+      borderRadius: BorderRadius.circular(radius ?? 16.0.r),
     );
   }
 }
