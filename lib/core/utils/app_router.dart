@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruit_market/core/utils/routes.dart';
-import 'package:fruit_market/features/home/presentation/views/home_view.dart';
+import 'package:fruit_market/features/home/presentation/views/widgets/home_view_body.dart';
 import 'package:fruit_market/features/login/presentation/views/create_account_view.dart';
 import 'package:fruit_market/features/login/presentation/views/login_view.dart';
 import 'package:fruit_market/features/onboarding/presentation/views/onboarding_view.dart';
@@ -38,7 +38,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: Routes.homeView,
-        builder: (context, state) => const HomeView(),
+        builder: (context, state) => const HomeViewBody(),
       ),
     ],
   );
