@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class FirebaseServices {
+class FirebaseAuthServices {
   final auth = FirebaseAuth.instance;
   final googleSignIn = GoogleSignIn();
   // dont't gorget to add firebasea auth and google sign in package
@@ -21,10 +21,10 @@ class FirebaseServices {
           idToken: googleSignInAuthentication.idToken,
         );
         // print('access token${authCredential.accessToken}');
-        
+
         // Once signed in, return the UserCredential
         await auth.signInWithCredential(authCredential);
-      //  print('User name  ${auth.currentUser?.displayName}');
+        //  print('User name  ${auth.currentUser?.displayName}');
       }
     } on FirebaseAuthException catch (e) {
       print(e.toString());

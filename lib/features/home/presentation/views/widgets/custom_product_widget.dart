@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../../core/utils/assets.dart';
+import 'package:fruit_market/features/home/data/models/product_details.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/spacer.dart';
 import '../../../../../core/utils/styles.dart';
@@ -10,8 +9,9 @@ import '../../../../../core/utils/styles.dart';
 class CustomProductWidget extends StatelessWidget {
   const CustomProductWidget({
     super.key,
+    required this.product,
   });
-
+  final ProductDetails product;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,8 +21,8 @@ class CustomProductWidget extends StatelessWidget {
         children: [
           Stack(
             children: [
-              Image.asset(
-                Assets.assetsImagesFruit1,
+              Image.network(
+                product.image,
                 width: 118.w,
                 height: 143.h,
               ),
@@ -76,12 +76,12 @@ class CustomProductWidget extends StatelessWidget {
           ),
           verticalSpace(5),
           Text(
-            'Strawberry',
+            product.name,
             style: Styles.font14SemiBold,
           ),
           verticalSpace(5),
           Text(
-            '300\$ Per/ kg',
+            '${product.price}\$ Per/ kg',
             style: Styles.font12Regular,
           )
         ],
