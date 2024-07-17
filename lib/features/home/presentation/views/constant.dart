@@ -17,4 +17,11 @@ abstract class HomeConstant {
     'Organic Vegetables',
     'Root Vegetabels',
   ];
+
+  static List<String> dryFruitsDocsId = [
+    'Dehiscent Dry Fruits',
+    'Indehiscent Dry Fruits',
+    'Kashmiri Dry Fruits',
+    'Mixed Dry Fruits Pack',
+  ];
 }
