@@ -1,37 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fruit_market/features/home/presentation/cubits/get_vegetables_product/get_vegetables_product_cubit.dart';
-import 'package:fruit_market/features/home/presentation/cubits/vegetables_cubit/vegetables_cubit.dart';
+import 'package:fruit_market/features/home/presentation/cubits/dry_druit_cubit/dry_fruit_cubit.dart';
+import 'package:fruit_market/features/home/presentation/cubits/get_dry_druit_product_cubit/get_dry_fruit_product_cubit.dart';
 import 'package:fruit_market/features/home/presentation/views/constant.dart';
-import 'package:fruit_market/features/home/presentation/views/widgets/vegetables_section_widget.dart';
+import 'package:fruit_market/features/home/presentation/views/widgets/dry_fruit_section_widget.dart';
 
-class VegetablePageViewElement extends StatelessWidget {
-  const VegetablePageViewElement({
+class DryFruitPageViewElement extends StatelessWidget {
+  const DryFruitPageViewElement({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => VegetablesCubit()..getVegetablData(),
+      create: (context) => DryFruitCubit()..getDryFruitData(),
       child: SingleChildScrollView(
-        child: BlocBuilder<VegetablesCubit, VegetablesState>(
+        child: BlocBuilder<DryFruitCubit, DryFruitState>(
           builder: (context, state) {
-            return state is VegetablesLoading
+            return state is DryFruitLoading
                 ? const Center(
                     child: CircularProgressIndicator(),
                   )
-                : state is VegetablesSuccess
+                : state is DryFruitSuccess
                     ? Column(
                         children: [
                           ...List.generate(state.collectionDetails.length,
                               (index) {
                             return BlocProvider(
-                              create: (context) => GetVegetablesProductCubit()
-                                ..getVegetablesProduct(
-                                    docId:
-                                        HomeConstant.vegetablesDocsId[index]),
-                              child: VegetablesSectionWidget(
+                              create: (context) => GetDryFruitProductCubit()
+                                ..getDryFruitProduct(
+                                    docId: HomeConstant.dryFruitsDocsId[index]),
+                              child: DryFruitSectionWidget(
                                 collectionDetails:
                                     state.collectionDetails[index],
                               ),
@@ -39,7 +38,7 @@ class VegetablePageViewElement extends StatelessWidget {
                           }),
                         ],
                       )
-                    : state is VegetablesFailure
+                    : state is DryFruitFailure
                         ? Center(
                             child: Text(state.errMessage),
                           )
