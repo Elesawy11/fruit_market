@@ -11,7 +11,7 @@ ProductDetails _$ProductDetailsFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       price: json['price'] as String,
       image: json['image'] as String,
-      rate: (json['rate'] as num).toInt(),
+      rate: (json['rate'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$ProductDetailsToJson(ProductDetails instance) =>

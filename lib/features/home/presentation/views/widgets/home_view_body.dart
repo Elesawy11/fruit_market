@@ -4,10 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruit_market/core/utils/spacer.dart';
 import 'package:fruit_market/features/home/presentation/cubits/fruit_cubit/fruit_cubit.dart';
 import 'package:fruit_market/features/home/presentation/views/constant.dart';
+import 'package:fruit_market/features/home/presentation/views/widgets/vegetable_page_view_element.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/styles.dart';
 import 'home_view_bar.dart';
-import 'page_view_element.dart';
+import 'fruit_page_view_element.dart';
 
 class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
@@ -99,12 +100,13 @@ class _HomeViewBodyState extends State<HomeViewBody>
               },
               controller: pageViewController,
               children: [
+                const VegetablePageViewElement(),
                 BlocProvider(
                   create: (context) => FruitCubit()..getFruitData(),
-                  child: const PageViewElement(),
+                  child: const FruitPageViewElement(),
                 ),
-                const PageViewElement(),
-                const PageViewElement(),
+                const FruitPageViewElement(),
+                const FruitPageViewElement(),
               ],
             ),
           ),

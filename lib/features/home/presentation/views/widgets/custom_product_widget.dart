@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fruit_market/features/home/data/models/product_details.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/spacer.dart';
 import '../../../../../core/utils/styles.dart';
@@ -9,9 +8,15 @@ import '../../../../../core/utils/styles.dart';
 class CustomProductWidget extends StatelessWidget {
   const CustomProductWidget({
     super.key,
-    required this.product,
+    // required this.product,
+    required this.image,
+    required this.name,
+    required this.price,
+    required this.rate,
   });
-  final ProductDetails product;
+  // final ProductDetails product;
+  final String image, name, price;
+  final double rate;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,7 +27,7 @@ class CustomProductWidget extends StatelessWidget {
           Stack(
             children: [
               Image.network(
-                product.image,
+                image,
                 width: 118.w,
                 height: 143.h,
               ),
@@ -53,12 +58,12 @@ class CustomProductWidget extends StatelessWidget {
           verticalSpace(8),
           RatingBar(
             onRatingUpdate: (value) {},
+            ignoreGestures: true,
             minRating: 1,
             maxRating: 5,
-            initialRating: 0,
+            initialRating: rate,
             itemSize: 16.r,
             itemPadding: EdgeInsets.only(left: 4.w),
-            // ignoreGestures: true,
             ratingWidget: RatingWidget(
               full: const Icon(
                 Icons.star,
@@ -76,12 +81,12 @@ class CustomProductWidget extends StatelessWidget {
           ),
           verticalSpace(5),
           Text(
-            product.name,
+            name,
             style: Styles.font14SemiBold,
           ),
           verticalSpace(5),
           Text(
-            '${product.price}\$ Per/ kg',
+            '$price\$ Per/ kg',
             style: Styles.font12Regular,
           )
         ],

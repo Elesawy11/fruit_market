@@ -4,7 +4,7 @@ part 'product_details.g.dart';
 @JsonSerializable()
 class ProductDetails {
   final String name, price, image;
-  final int rate;
+  final double rate;
 
   ProductDetails({
     required this.name,

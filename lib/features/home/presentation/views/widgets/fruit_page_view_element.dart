@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_market/features/home/presentation/cubits/fruit_cubit/fruit_cubit.dart';
 import 'package:fruit_market/features/home/presentation/cubits/get_product_cubit/get_products_cubit.dart';
+import 'package:fruit_market/features/home/presentation/views/constant.dart';
 
-import 'custom_section_widget.dart';
+import 'fruit_section_widget.dart';
 
-class PageViewElement extends StatelessWidget {
-  const PageViewElement({
+class FruitPageViewElement extends StatelessWidget {
+  const FruitPageViewElement({
     super.key,
   });
 
@@ -26,8 +27,9 @@ class PageViewElement extends StatelessWidget {
                             (index) {
                           return BlocProvider(
                             create: (context) => GetProductsCubit()
-                              ..getFruitProduct(docId: docsId[index]),
-                            child: CustomSectionWidget(
+                              ..getFruitProduct(
+                                  docId: HomeConstant.fruitDocsId[index]),
+                            child: FruitSectionWidget(
                               collectionDetails: state.collectionDetails[index],
                             ),
                           );
@@ -48,10 +50,3 @@ class PageViewElement extends StatelessWidget {
     );
   }
 }
-
-List<String> docsId = [
-  'Mixed Fruit Pack',
-  'Organic Fruits',
-  'Stone Fruits',
-  'melons',
-];

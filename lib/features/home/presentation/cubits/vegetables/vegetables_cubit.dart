@@ -12,7 +12,7 @@ class VegetablesCubit extends Cubit<VegetablesState> {
   CollectionReference<Map<String, dynamic>> firestore =
       FirebaseFirestore.instance.collection('Vegetables');
 
-  void getFruitData() {
+  void getVegetablData() {
     emit(VegetablesLoading());
     try {
       firestore.snapshots().listen((event) {
