@@ -36,7 +36,6 @@ class HomeFirebase {
   }
 
   Future<String> getImageUrlStorage() async {
-    final String imageUel;
 // required String path
     final storageRef = FirebaseStorage.instance.ref('images');
     final images = storageRef.child("images");
