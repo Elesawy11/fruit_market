@@ -1,10 +1,8 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruit_market/core/utils/spacer.dart';
-import 'package:fruit_market/features/home/data/firebase/home_firebase.dart';
 import 'package:fruit_market/features/home/presentation/cubits/fruit_cubit/fruit_cubit.dart';
 import 'package:fruit_market/features/home/presentation/views/constant.dart';
 import 'package:fruit_market/features/home/presentation/views/widgets/dry_fruit_page_view_element.dart';
@@ -53,13 +51,6 @@ class _HomeViewBodyState extends State<HomeViewBody>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await pickImageFromGallery();
-          HomeFirebase().uploadDataStorage(image: pickedImage!);
-        },
-        child: const Icon(Icons.add_a_photo),
-      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
