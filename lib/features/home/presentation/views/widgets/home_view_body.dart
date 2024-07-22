@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruit_market/core/utils/spacer.dart';
+import 'package:fruit_market/features/home/presentation/cubits/fruit_cubit/fruit_cubit.dart';
 import 'package:fruit_market/features/home/presentation/views/constant.dart';
+import 'package:fruit_market/features/home/presentation/views/widgets/dry_fruit_page_view_element.dart';
+import 'package:fruit_market/features/home/presentation/views/widgets/vegetable_page_view_element.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/styles.dart';
 import 'home_view_bar.dart';
-import 'page_view_element.dart';
+import 'fruit_page_view_element.dart';
 
 class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
@@ -96,10 +100,14 @@ class _HomeViewBodyState extends State<HomeViewBody>
                 setState(() {});
               },
               controller: pageViewController,
-              children: const [
-                PageViewElement(),
-                PageViewElement(),
-                PageViewElement(),
+              children: [
+                const VegetablePageViewElement(),
+                BlocProvider(
+                  create: (context) => FruitCubit()..getFruitData(),
+                  child: const FruitPageViewElement(),
+                ),
+                
+                const DryFruitPageViewElement(),
               ],
             ),
           ),
