@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,6 +7,7 @@ import 'package:fruit_market/features/home/presentation/cubits/fruit_cubit/fruit
 import 'package:fruit_market/features/home/presentation/views/constant.dart';
 import 'package:fruit_market/features/home/presentation/views/widgets/dry_fruit_page_view_element.dart';
 import 'package:fruit_market/features/home/presentation/views/widgets/vegetable_page_view_element.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/styles.dart';
 import 'home_view_bar.dart';
@@ -20,6 +22,16 @@ class HomeViewBody extends StatefulWidget {
 
 class _HomeViewBodyState extends State<HomeViewBody>
     with TickerProviderStateMixin {
+  final ImagePicker imagePicker = ImagePicker();
+  File? pickedImage;
+
+  Future<void> pickImageFromGallery() async {
+    final image = await imagePicker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      pickedImage = image != null ? File(image.path) : null;
+    });
+  }
+
   late PageController pageViewController;
 
   int currentPageIndex = 0;
@@ -106,7 +118,6 @@ class _HomeViewBodyState extends State<HomeViewBody>
                   create: (context) => FruitCubit()..getFruitData(),
                   child: const FruitPageViewElement(),
                 ),
-                
                 const DryFruitPageViewElement(),
               ],
             ),
