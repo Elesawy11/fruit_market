@@ -6,7 +6,7 @@ part 'google_state.dart';
 
 class GoogleCubit extends Cubit<GoogleState> {
   GoogleCubit(this.firebaseServices) : super(GoogleInitial());
-  final FirebaseServices firebaseServices;
+  final FirebaseAuthServices firebaseServices;
   googleAuth() async {
     emit(GoogleLoading());
 
