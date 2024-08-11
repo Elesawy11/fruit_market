@@ -112,13 +112,10 @@ class _HomeViewBodyState extends State<HomeViewBody>
                 setState(() {});
               },
               controller: pageViewController,
-              children: [
-                const VegetablePageViewElement(),
-                BlocProvider(
-                  create: (context) => FruitCubit()..getFruitData(),
-                  child: const FruitPageViewElement(),
-                ),
-                const DryFruitPageViewElement(),
+              children: const[
+                 VegetablePageViewElement(),
+                 FruitPageViewElement(),
+                 DryFruitPageViewElement(),
               ],
             ),
           ),
