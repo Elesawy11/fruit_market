@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 abstract class HomeConstant {
   static List<String> sectionsName = [
     'Vegetables',
@@ -24,4 +26,27 @@ abstract class HomeConstant {
     'Kashmiri Dry Fruits',
     'Mixed Dry Fruits Pack',
   ];
+
+ static List<List<dynamic>> destinationsList = [
+  [
+    Icons.home,
+    Icons.home_outlined,
+    'Home',
+  ],
+  [
+    Icons.shopping_cart,
+    Icons.shopping_cart_outlined,
+    'Shopping Cart',
+  ],
+  [
+    Icons.favorite,
+    Icons.favorite_outline,
+    'Favorite',
+  ],
+  [
+    Icons.person,
+    Icons.person_outline,
+    'My Account',
+  ],
+];
 }

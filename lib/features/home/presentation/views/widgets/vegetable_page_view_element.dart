@@ -27,11 +27,9 @@ class VegetablePageViewElement extends StatelessWidget {
                           return BlocProvider(
                             create: (context) => GetVegetablesProductCubit()
                               ..getVegetablesProduct(
-                                  docId:
-                                      HomeConstant.vegetablesDocsId[index]),
+                                  docId: HomeConstant.vegetablesDocsId[index]),
                             child: VegetablesSectionWidget(
-                              collectionDetails:
-                                  state.collectionDetails[index],
+                              collectionDetails: state.collectionDetails[index],
                             ),
                           );
                         }),
