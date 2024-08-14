@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fruit_market/core/utils/routes.dart';
+import 'package:fruit_market/features/home/data/models/product_details.dart';
+import 'package:fruit_market/features/home/presentation/views/details_view.dart';
 import 'package:fruit_market/main_view.dart';
 import 'package:fruit_market/features/home/presentation/views/widgets/main_view_body.dart';
 import 'package:fruit_market/features/login/presentation/views/create_account_view.dart';
@@ -39,6 +41,15 @@ abstract class AppRouter {
                 child: child,
               );
             },
+          );
+        },
+      ),
+      GoRoute(
+        path: Routes.detailsView,
+        builder: (context, state) {
+          // return DetailsView(image: state.extra., name: name, price: price, rate: rate)
+          return DetailsView(
+            product: state.extra as ProductDetails,
           );
         },
       ),
