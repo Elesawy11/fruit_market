@@ -20,7 +20,7 @@ class CustomProductWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         context.go(
-          Routes.detailsView,
+          '${Routes.homeView}/${Routes.detailsView}',
           extra: product,
         );
       },
