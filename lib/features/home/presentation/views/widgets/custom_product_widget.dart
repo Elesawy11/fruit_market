@@ -11,10 +11,8 @@ import '../../../../../core/utils/styles.dart';
 class CustomProductWidget extends StatelessWidget {
   const CustomProductWidget({
     super.key,
-    // required this.product,
     required this.product,
   });
-  // final ProductDetails product;
 
   final ProductDetails product;
   @override

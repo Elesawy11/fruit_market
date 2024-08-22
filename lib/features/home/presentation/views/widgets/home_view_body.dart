@@ -10,7 +10,6 @@ import 'fruit_page_view_element.dart';
 import 'home_view_bar.dart';
 import 'vegetable_page_view_element.dart';
 
-
 class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
 
