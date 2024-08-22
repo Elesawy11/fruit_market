@@ -1,58 +1,72 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fruit_market/core/utils/colors.dart';
 import 'package:fruit_market/features/home/presentation/views/constant.dart';
-import 'package:fruit_market/features/home/presentation/views/home_view.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
-class MainViewBody extends StatefulWidget {
-  const MainViewBody({super.key});
+// class MainViewBody extends StatefulWidget {
+//   const MainViewBody({super.key, required this.navigationShell});
+//   final StatefulNavigationShell navigationShell;
 
-  @override
-  State<MainViewBody> createState() => _MainViewBodyState();
-}
+//   @override
+//   State<MainViewBody> createState() => _MainViewBodyState();
+// }
 
-class _MainViewBodyState extends State<MainViewBody>
-    with TickerProviderStateMixin {
-  final ImagePicker imagePicker = ImagePicker();
-  File? pickedImage;
+class MainViewBody extends StatelessWidget {
+  const MainViewBody({super.key, required this.navigationShell});
+  final StatefulNavigationShell navigationShell;
+  // final ImagePicker imagePicker = ImagePicker();
+  // File? pickedImage;
 
-  Future<void> pickImageFromGallery() async {
-    final image = await imagePicker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      pickedImage = image != null ? File(image.path) : null;
-    });
-  }
-
-  int currentPageIndexForNavigtorBar = 0;
+  // Future<void> pickImageFromGallery() async {
+  //   final image = await imagePicker.pickImage(source: ImageSource.gallery);
+  //   setState(() {
+  //     pickedImage = image != null ? File(image.path) : null;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: NavigationBar(
-        onDestinationSelected: (index) {
-          setState(() {
-            currentPageIndexForNavigtorBar = index;
-          });
+      body: navigationShell,
+      bottomNavigationBar: BottomNavigationBar(
+        fixedColor: ColorManager.green69,
+        unselectedItemColor: Colors.grey,
+        currentIndex: navigationShell.currentIndex,
+        onTap: (index) {
+          print('first index of page is : $index');
+
+          navigationShell.goBranch(index);
+          print('index of page is : $index');
         },
-        selectedIndex: currentPageIndexForNavigtorBar,
-        height: 60.h,
-        destinations: List.generate(
-          4,
-          (index) => NavigationDestination(
-            selectedIcon: Icon(
-              HomeConstant.destinationsList[index][0],
-            ),
+        items: List.generate(
+          HomeConstant.destinationsList.length,
+          (index) => customBootmNavigationBarItem(
             icon: Icon(
               HomeConstant.destinationsList[index][1],
             ),
+            avctiveIcon: Icon(HomeConstant.destinationsList[index][0]),
             label: HomeConstant.destinationsList[index][2],
+            index: index,
           ),
         ),
       ),
-      body: <Widget>[
-        const HomeView(),
-      ][currentPageIndexForNavigtorBar],
+      // body: widget.navigationShell,
+    );
+  }
+
+  BottomNavigationBarItem customBootmNavigationBarItem({
+    required Widget icon,
+    required Widget avctiveIcon,
+    required String label,
+    required int index,
+  }) {
+    return BottomNavigationBarItem(
+      backgroundColor: Colors.white,
+      icon: icon,
+      label: label,
+      activeIcon: avctiveIcon,
     );
   }
 }

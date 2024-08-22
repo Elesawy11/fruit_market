@@ -68,10 +68,8 @@ class FruitSectionWidget extends StatelessWidget {
                             )
                           : state is GetProductsSuccess
                               ? CustomProductWidget(
-                                  name: state.productDetails[index].name,
-                                  image: state.productDetails[index].image,
-                                  price: state.productDetails[index].price,
-                                  rate: state.productDetails[index].rate,
+                                  product: state.productDetails[index],
+                                  
                                 )
                               : const Center(
                                   child: Text(
