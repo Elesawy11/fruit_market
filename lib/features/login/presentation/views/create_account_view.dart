@@ -46,7 +46,7 @@ class CreateAccountView extends StatelessWidget {
               AppTextButton(
                 text: 'Create',
                 onPressed: () {
-                  context.pushReplacement(Routes.homeView);
+                  context.go(Routes.homeView);
                 },
                 width: double.infinity,
                 borderRadius: BorderRadius.circular(

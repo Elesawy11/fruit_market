@@ -1,17 +1,14 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fruit_market/core/utils/spacer.dart';
-import 'package:fruit_market/features/home/presentation/cubits/fruit_cubit/fruit_cubit.dart';
-import 'package:fruit_market/features/home/presentation/views/constant.dart';
-import 'package:fruit_market/features/home/presentation/views/widgets/dry_fruit_page_view_element.dart';
-import 'package:fruit_market/features/home/presentation/views/widgets/vegetable_page_view_element.dart';
-import 'package:image_picker/image_picker.dart';
+
 import '../../../../../core/utils/colors.dart';
+import '../../../../../core/utils/spacer.dart';
 import '../../../../../core/utils/styles.dart';
-import 'home_view_bar.dart';
+import '../constant.dart';
+import 'dry_fruit_page_view_element.dart';
 import 'fruit_page_view_element.dart';
+import 'home_view_bar.dart';
+import 'vegetable_page_view_element.dart';
 
 class HomeViewBody extends StatefulWidget {
   const HomeViewBody({super.key});
@@ -20,18 +17,7 @@ class HomeViewBody extends StatefulWidget {
   State<HomeViewBody> createState() => _HomeViewBodyState();
 }
 
-class _HomeViewBodyState extends State<HomeViewBody>
-    with TickerProviderStateMixin {
-  final ImagePicker imagePicker = ImagePicker();
-  File? pickedImage;
-
-  Future<void> pickImageFromGallery() async {
-    final image = await imagePicker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      pickedImage = image != null ? File(image.path) : null;
-    });
-  }
-
+class _HomeViewBodyState extends State<HomeViewBody> {
   late PageController pageViewController;
 
   int currentPageIndex = 0;
@@ -50,8 +36,8 @@ class _HomeViewBodyState extends State<HomeViewBody>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return SingleChildScrollView(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const HomeViewBar(),
@@ -112,13 +98,10 @@ class _HomeViewBodyState extends State<HomeViewBody>
                 setState(() {});
               },
               controller: pageViewController,
-              children: [
-                const VegetablePageViewElement(),
-                BlocProvider(
-                  create: (context) => FruitCubit()..getFruitData(),
-                  child: const FruitPageViewElement(),
-                ),
-                const DryFruitPageViewElement(),
+              children: const [
+                VegetablePageViewElement(),
+                FruitPageViewElement(),
+                DryFruitPageViewElement(),
               ],
             ),
           ),

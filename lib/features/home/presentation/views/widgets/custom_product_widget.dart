@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fruit_market/core/utils/routes.dart';
+import 'package:fruit_market/features/home/data/models/product_details.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/spacer.dart';
 import '../../../../../core/utils/styles.dart';
@@ -8,15 +11,10 @@ import '../../../../../core/utils/styles.dart';
 class CustomProductWidget extends StatelessWidget {
   const CustomProductWidget({
     super.key,
-    // required this.product,
-    required this.image,
-    required this.name,
-    required this.price,
-    required this.rate,
+    required this.product,
   });
-  // final ProductDetails product;
-  final String image, name, price;
-  final double rate;
+
+  final ProductDetails product;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,10 +24,18 @@ class CustomProductWidget extends StatelessWidget {
         children: [
           Stack(
             children: [
-              Image.network(
-                image,
-                width: 118.w,
-                height: 143.h,
+              GestureDetector(
+                onTap: () {
+                  context.go(
+                    Routes.detailsView,
+                    extra: product,
+                  );
+                },
+                child: Image.network(
+                  product.image,
+                  width: 118.w,
+                  height: 143.h,
+                ),
               ),
 
               // Icon Widget
@@ -61,7 +67,7 @@ class CustomProductWidget extends StatelessWidget {
             ignoreGestures: true,
             minRating: 1,
             maxRating: 5,
-            initialRating: rate,
+            initialRating: product.rate,
             itemSize: 16.r,
             itemPadding: EdgeInsets.only(left: 4.w),
             ratingWidget: RatingWidget(
@@ -81,12 +87,12 @@ class CustomProductWidget extends StatelessWidget {
           ),
           verticalSpace(5),
           Text(
-            name,
+            product.name,
             style: Styles.font14SemiBold,
           ),
           verticalSpace(5),
           Text(
-            '$price\$ Per/ kg',
+            '${product.price}\$ Per/ kg',
             style: Styles.font12Regular,
           )
         ],

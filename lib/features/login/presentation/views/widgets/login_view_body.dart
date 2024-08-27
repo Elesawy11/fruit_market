@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/utils/colors.dart';
@@ -70,9 +71,17 @@ class LoginViewBody extends StatelessWidget {
                         verticalSpace(60),
                         AppTextButton(
                           text: 'Create Account',
-                          onPressed: () => context.push(
-                            Routes.createAccountView,
-                          ),
+                          // onPressed: () => context.push(
+                          //   Routes.createAccountView,
+                          // ),
+                          onPressed: () async {
+                            final SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            await prefs.setBool('isLogin', true);
+                            print(
+                                'isLogin value ==  ${prefs.getBool('isLogin')}');
+                            context.pushReplacement(Routes.homeView);
+                          },
                         ),
                       ],
                     ),
