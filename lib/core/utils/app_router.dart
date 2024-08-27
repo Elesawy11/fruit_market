@@ -68,16 +68,16 @@ abstract class AppRouter {
               GoRoute(
                 path: Routes.homeView,
                 builder: (context, state) => const HomeView(),
-                routes: [
-                  GoRoute(
-                    path: Routes.detailsView,
-                    builder: (context, state) {
-                      return ProductDetailsView(
-                        product: state.extra as ProductDetails,
-                      );
-                    },
-                  ),
-                ],
+                // routes: [
+                //   GoRoute(
+                //     path: Routes.detailsView,
+                //     builder: (context, state) {
+                //       return ProductDetailsView(
+                //         product: state.extra as ProductDetails,
+                //       );
+                //     },
+                //   ),
+                // ]
               ),
             ],
           ),
@@ -106,6 +106,15 @@ abstract class AppRouter {
             ],
           ),
         ],
+      ),
+      GoRoute(
+        parentNavigatorKey: rootNavigatorKey,
+        path: Routes.detailsView,
+        builder: (context, state) {
+          return ProductDetailsView(
+            product: state.extra as ProductDetails,
+          );
+        },
       ),
     ],
   );
