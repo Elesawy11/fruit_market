@@ -17,85 +17,85 @@ class CustomProductWidget extends StatelessWidget {
   final ProductDetails product;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        context.go(
-          Routes.detailsView,
-          extra: product,
-        );
-      },
-      child: Padding(
-        padding: EdgeInsets.only(left: 20.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              children: [
-                Image.network(
+    return Padding(
+      padding: EdgeInsets.only(left: 20.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Stack(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  context.go(
+                    Routes.detailsView,
+                    extra: product,
+                  );
+                },
+                child: Image.network(
                   product.image,
                   width: 118.w,
                   height: 143.h,
                 ),
+              ),
 
-                // Icon Widget
+              // Icon Widget
 
-                Positioned(
-                  right: 8,
-                  top: 8,
-                  child: GestureDetector(
-                    child: Container(
-                      height: 28.h,
-                      width: 28.w,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(15.r),
-                      ),
-                      child: Icon(
-                        Icons.favorite_border_outlined,
-                        size: 18.r,
-                        color: ColorManager.yellowED,
-                      ),
+              Positioned(
+                right: 8,
+                top: 8,
+                child: GestureDetector(
+                  child: Container(
+                    height: 28.h,
+                    width: 28.w,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15.r),
+                    ),
+                    child: Icon(
+                      Icons.favorite_border_outlined,
+                      size: 18.r,
+                      color: ColorManager.yellowED,
                     ),
                   ),
-                )
-              ],
-            ),
-            verticalSpace(8),
-            RatingBar(
-              onRatingUpdate: (value) {},
-              ignoreGestures: true,
-              minRating: 1,
-              maxRating: 5,
-              initialRating: product.rate,
-              itemSize: 16.r,
-              itemPadding: EdgeInsets.only(left: 4.w),
-              ratingWidget: RatingWidget(
-                full: const Icon(
-                  Icons.star,
-                  color: ColorManager.yellowFF,
                 ),
-                half: const Icon(
-                  Icons.star,
-                  color: ColorManager.yellowFF,
-                ),
-                empty: const Icon(
-                  Icons.star,
-                  color: Colors.grey,
-                ),
+              )
+            ],
+          ),
+          verticalSpace(8),
+          RatingBar(
+            onRatingUpdate: (value) {},
+            ignoreGestures: true,
+            minRating: 1,
+            maxRating: 5,
+            initialRating: product.rate,
+            itemSize: 16.r,
+            itemPadding: EdgeInsets.only(left: 4.w),
+            ratingWidget: RatingWidget(
+              full: const Icon(
+                Icons.star,
+                color: ColorManager.yellowFF,
+              ),
+              half: const Icon(
+                Icons.star,
+                color: ColorManager.yellowFF,
+              ),
+              empty: const Icon(
+                Icons.star,
+                color: Colors.grey,
               ),
             ),
-            verticalSpace(5),
-            Text(
-              product.name,
-              style: Styles.font14SemiBold,
-            ),
-            verticalSpace(5),
-            Text(
-              '${product.price}\$ Per/ kg',
-              style: Styles.font12Regular,
-            )
-          ],
-        ),
+          ),
+          verticalSpace(5),
+          Text(
+            product.name,
+            style: Styles.font14SemiBold,
+          ),
+          verticalSpace(5),
+          Text(
+            '${product.price}\$ Per/ kg',
+            style: Styles.font12Regular,
+          )
+        ],
       ),
     );
   }

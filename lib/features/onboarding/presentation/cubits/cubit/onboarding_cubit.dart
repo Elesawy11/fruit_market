@@ -10,8 +10,8 @@ class OnboardingCubit extends Cubit<OnboardingState> {
   OnboardingCubit() : super(OnboardingInitial());
   final PageController pageController = PageController();
   int selectedIndex = 0;
-  void systemUi() =>
-      SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+  // void systemUi() =>
+  //     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
 
   void increaseIndex() {
     selectedIndex += 1;

@@ -9,7 +9,9 @@ class OnboardingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => OnboardingCubit()..systemUi(),
+      // create: (context) => OnboardingCubit()..systemUi(),
+      create: (context) => OnboardingCubit(),
+
       child: Builder(
         builder: (context) {
           final OnboardingCubit cubit =
