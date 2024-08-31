@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruit_market/core/utils/routes.dart';
 import 'package:fruit_market/features/home/data/models/product_details.dart';
@@ -7,14 +6,21 @@ import 'package:go_router/go_router.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/spacer.dart';
 import '../../../../../core/utils/styles.dart';
+import 'custom_rating_bar.dart';
 
-class CustomProductWidget extends StatelessWidget {
+class CustomProductWidget extends StatefulWidget {
   const CustomProductWidget({
     super.key,
     required this.product,
   });
 
   final ProductDetails product;
+
+  @override
+  State<CustomProductWidget> createState() => _CustomProductWidgetState();
+}
+
+class _CustomProductWidgetState extends State<CustomProductWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,11 +34,11 @@ class CustomProductWidget extends StatelessWidget {
                 onTap: () {
                   context.go(
                     Routes.detailsView,
-                    extra: product,
+                    extra: widget.product,
                   );
                 },
                 child: Image.network(
-                  product.image,
+                  widget.product.image,
                   width: 118.w,
                   height: 143.h,
                 ),
@@ -44,6 +50,10 @@ class CustomProductWidget extends StatelessWidget {
                 right: 8,
                 top: 8,
                 child: GestureDetector(
+                  onTap: () {
+                    widget.product.isFavorite = !widget.product.isFavorite;
+                    setState(() {});
+                  },
                   child: Container(
                     height: 28.h,
                     width: 28.w,
@@ -51,48 +61,32 @@ class CustomProductWidget extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15.r),
                     ),
-                    child: Icon(
-                      Icons.favorite_border_outlined,
-                      size: 18.r,
-                      color: ColorManager.yellowED,
-                    ),
+                    child: widget.product.isFavorite
+                        ? Icon(
+                            Icons.favorite,
+                            size: 18.r,
+                            color: Colors.red,
+                          )
+                        : Icon(
+                            Icons.favorite_border_outlined,
+                            size: 18.r,
+                            color: ColorManager.yellowED,
+                          ),
                   ),
                 ),
               )
             ],
           ),
           verticalSpace(8),
-          RatingBar(
-            onRatingUpdate: (value) {},
-            ignoreGestures: true,
-            minRating: 1,
-            maxRating: 5,
-            initialRating: product.rate,
-            itemSize: 16.r,
-            itemPadding: EdgeInsets.only(left: 4.w),
-            ratingWidget: RatingWidget(
-              full: const Icon(
-                Icons.star,
-                color: ColorManager.yellowFF,
-              ),
-              half: const Icon(
-                Icons.star,
-                color: ColorManager.yellowFF,
-              ),
-              empty: const Icon(
-                Icons.star,
-                color: Colors.grey,
-              ),
-            ),
-          ),
+          CustomRatingBar(product: widget.product),
           verticalSpace(5),
           Text(
-            product.name,
+            widget.product.name,
             style: Styles.font14SemiBold,
           ),
           verticalSpace(5),
           Text(
-            '${product.price}\$ Per/ kg',
+            '${widget.product.price}\$ Per/ kg',
             style: Styles.font12Regular,
           )
         ],

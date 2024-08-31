@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fruit_market/core/utils/routes.dart';
 import 'package:fruit_market/features/home/data/models/product_details.dart';
 import 'package:fruit_market/features/home/presentation/views/product_details_view.dart';
-import 'package:fruit_market/features/home/presentation/views/favorite_view.dart';
+import 'package:fruit_market/features/favorite/presentation/views/favorite_view.dart';
 import 'package:fruit_market/features/home/presentation/views/home_view.dart';
 import 'package:fruit_market/features/home/presentation/views/myaccount_view.dart';
 import 'package:fruit_market/features/home/presentation/views/shopping_cart_view.dart';
@@ -68,16 +68,6 @@ abstract class AppRouter {
               GoRoute(
                 path: Routes.homeView,
                 builder: (context, state) => const HomeView(),
-                // routes: [
-                //   GoRoute(
-                //     path: Routes.detailsView,
-                //     builder: (context, state) {
-                //       return ProductDetailsView(
-                //         product: state.extra as ProductDetails,
-                //       );
-                //     },
-                //   ),
-                // ]
               ),
             ],
           ),
