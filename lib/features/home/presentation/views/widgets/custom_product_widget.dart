@@ -74,6 +74,35 @@ class _CustomProductWidgetState extends State<CustomProductWidget> {
                           ),
                   ),
                 ),
+              ),
+              Positioned(
+                left: 8,
+                top: 8,
+                child: GestureDetector(
+                  onTap: () {
+                    // widget.product.isFavorite = !widget.product.isFavorite;
+                    // setState(() {});
+                  },
+                  child: Container(
+                    height: 28.h,
+                    width: 28.w,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15.r),
+                    ),
+                    child: widget.product.isFavorite
+                        ? Icon(
+                            Icons.shopping_cart,
+                            size: 18.r,
+                            color: Colors.red,
+                          )
+                        : Icon(
+                            Icons.shopping_cart_outlined,
+                            size: 18.r,
+                            color: ColorManager.yellowED,
+                          ),
+                  ),
+                ),
               )
             ],
           ),

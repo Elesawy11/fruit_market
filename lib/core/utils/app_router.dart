@@ -5,12 +5,12 @@ import 'package:fruit_market/features/home/presentation/views/product_details_vi
 import 'package:fruit_market/features/favorite/presentation/views/favorite_view.dart';
 import 'package:fruit_market/features/home/presentation/views/home_view.dart';
 import 'package:fruit_market/features/home/presentation/views/myaccount_view.dart';
-import 'package:fruit_market/features/home/presentation/views/shopping_cart_view.dart';
 import 'package:fruit_market/main_view.dart';
 import 'package:fruit_market/features/login/presentation/views/create_account_view.dart';
 import 'package:fruit_market/features/login/presentation/views/login_view.dart';
 import 'package:fruit_market/features/onboarding/presentation/views/onboarding_view.dart';
 import 'package:go_router/go_router.dart';
+import '../../features/shopping_cart/presentation/views/shopping_cart_view.dart';
 import 'shared_pref.dart';
 
 abstract class AppRouter {

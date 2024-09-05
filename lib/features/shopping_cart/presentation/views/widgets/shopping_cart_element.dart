@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fruit_market/features/home/data/models/product_details.dart';
+import 'package:fruit_market/core/utils/routes.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/spacer.dart';
 import '../../../../../core/utils/styles.dart';
-import '../../../../home/presentation/views/widgets/custom_rating_bar.dart';
-import 'custom_Add_or_remove_button.dart';
+import '../../../../favorite/presentation/views/widgets/custom_Add_or_remove_button.dart';
 
-class FavoriteViewElement extends StatelessWidget {
-  const FavoriteViewElement({
+class ShoppingCartElement extends StatelessWidget {
+  const ShoppingCartElement({
     super.key,
   });
 
@@ -62,48 +62,29 @@ class FavoriteViewElement extends StatelessWidget {
                   ),
                 ),
                 verticalSpace(4),
-                SizedBox(
-                  height: 14.h,
-                  child: FittedBox(
-                    child: CustomRatingBar(
-                      product: ProductDetails(
-                        name: 'apple',
-                        price: '20',
-                        image: '',
-                        rate: 4,
-                      ),
-                    ),
-                  ),
-                ),
+                // CustomRatingBar(product: ),
                 Row(
                   children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.shopping_cart,
-                        color: ColorManager.yellowCC,
-                      ),
+                    CustomAddOrRemoveButton(
+                      icon: Icons.remove,
+                      onTap: () {},
                     ),
-                    // CustomAddOrRemoveButton(
-                    //   icon: Icons.remove,
-                    //   onTap: () {},
-                    // ),
-                    // horizontalSpace(10),
-                    // Text(
-                    //   '0',
-                    //   style: Styles.font15Regular,
-                    // ),
-                    // horizontalSpace(10),
-                    // CustomAddOrRemoveButton(
-                    //   icon: Icons.add,
-                    //   onTap: () {},
-                    // ),
+                    horizontalSpace(10),
+                    Text(
+                      '0',
+                      style: Styles.font15Regular,
+                    ),
+                    horizontalSpace(10),
+                    CustomAddOrRemoveButton(
+                      icon: Icons.add,
+                      onTap: () {},
+                    ),
                     horizontalSpace(60),
                     IconButton(
                       onPressed: () {},
                       icon: const Icon(
-                        Icons.favorite,
-                        color: Colors.red,
+                        Icons.delete,
+                        // color: ColorManager.yellowCC,
                       ),
                     ),
                     // GestureDetector(
@@ -127,6 +108,23 @@ class FavoriteViewElement extends StatelessWidget {
                   ],
                 )
               ],
+            ),
+            // IconButton(
+            //   padding: EdgeInsets.zero,
+            //   onPressed: () {},
+            //   icon: Icon(
+            //     Icons.arrow_right_outlined,
+            //     size: 32.r,
+            //   ),
+            // )
+            Center(
+              child: GestureDetector(
+                // onTap: () => context.push(Routes.detailsView),
+                child: Icon(
+                  Icons.arrow_right_outlined,
+                  size: 32.r,
+                ),
+              ),
             )
           ],
         ),
