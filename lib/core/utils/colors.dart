@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 abstract class ColorManager {
   static const Color grey89 = Color(0xff898989);
+  static const Color grey39 = Color(0xff393939);
+  static const Color greyB2 = Color(0xffB2B2B2);
   static const Color grey83 = Color(0xff838181);
   static const Color grey78 = Color(0xff78787C);
   static const Color grey70 = Color(0xff707070);
