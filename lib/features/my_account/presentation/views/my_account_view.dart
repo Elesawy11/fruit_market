@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'widgets/custom_my_account_widget.dart';
 
 class MyAccountView extends StatelessWidget {
   const MyAccountView({super.key});
@@ -6,9 +7,7 @@ class MyAccountView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: Text('Favorite View'),
-      ),
+      body: CustomMyAccountWidget(),
     );
   }
 }
