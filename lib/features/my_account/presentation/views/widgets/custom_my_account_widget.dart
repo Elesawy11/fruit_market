@@ -45,7 +45,7 @@ class CustomMyAccountWidget extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'elesawy928@gmail.com',
+                  'elesawy21@gmail.com',
                   style: Styles.font12Regular.copyWith(
                     color: Colors.white,
                   ),
