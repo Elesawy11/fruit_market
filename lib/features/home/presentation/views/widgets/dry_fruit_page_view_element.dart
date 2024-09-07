@@ -12,43 +12,39 @@ class DryFruitPageViewElement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => DryFruitCubit()..getDryFruitData(),
-      child: SingleChildScrollView(
-        child: BlocBuilder<DryFruitCubit, DryFruitState>(
-          builder: (context, state) {
-            return state is DryFruitLoading
-                ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : state is DryFruitSuccess
-                    ? Column(
-                        children: [
-                          ...List.generate(state.collectionDetails.length,
-                              (index) {
-                            return BlocProvider(
-                              create: (context) => GetDryFruitProductCubit()
-                                ..getDryFruitProduct(
-                                    docId: HomeConstant.dryFruitsDocsId[index]),
-                              child: DryFruitSectionWidget(
-                                collectionDetails:
-                                    state.collectionDetails[index],
-                              ),
-                            );
-                          }),
-                        ],
-                      )
-                    : state is DryFruitFailure
-                        ? Center(
-                            child: Text(state.errMessage),
-                          )
-                        : const Center(
-                            child: Text(
-                              'Loading....',
+    return SingleChildScrollView(
+      child: BlocBuilder<DryFruitCubit, DryFruitState>(
+        builder: (context, state) {
+          return state is DryFruitLoading
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : state is DryFruitSuccess
+                  ? Column(
+                      children: [
+                        ...List.generate(state.collectionDetails.length,
+                            (index) {
+                          return BlocProvider(
+                            create: (context) => GetDryFruitProductCubit()
+                              ..getDryFruitProduct(
+                                  docId: HomeConstant.dryFruitsDocsId[index]),
+                            child: DryFruitSectionWidget(
+                              collectionDetails: state.collectionDetails[index],
                             ),
                           );
-          },
-        ),
+                        }),
+                      ],
+                    )
+                  : state is DryFruitFailure
+                      ? Center(
+                          child: Text(state.errMessage),
+                        )
+                      : const Center(
+                          child: Text(
+                            'Loading....',
+                          ),
+                        );
+        },
       ),
     );
   }

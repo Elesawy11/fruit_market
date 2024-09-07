@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:fruit_market/features/home/data/models/product_details.dart';
@@ -36,7 +35,6 @@ class HomeFirebase {
   }
 
   Future<String> getImageUrlStorage() async {
-    final String imageUel;
 // required String path
     final storageRef = FirebaseStorage.instance.ref('images');
     final images = storageRef.child("images");
