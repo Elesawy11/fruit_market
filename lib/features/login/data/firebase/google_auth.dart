@@ -4,7 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 class FirebaseAuthServices {
   final auth = FirebaseAuth.instance;
   final googleSignIn = GoogleSignIn();
-  // dont't gorget to add firebasea auth and google sign in package
+  // dont't fgorget to add firebasea auth and google sign in package
   signInWithGoogle() async {
     try {
       // Trigger the authentication flow
