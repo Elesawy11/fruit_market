@@ -8,6 +8,7 @@ import 'package:fruit_market/core/utils/colors.dart';
 import 'package:fruit_market/core/utils/service_locatore.dart';
 import 'package:fruit_market/core/utils/shared_pref.dart';
 import 'package:fruit_market/features/onboarding/presentation/cubits/cubit/onboarding_cubit.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'firebase_options.dart';
 import 'simple_bloc_observer.dart';
 
@@ -17,6 +18,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await Hive.initFlutter();
+
   serviceLocatore();
   getSharedPref();
   SystemChrome.setSystemUIOverlayStyle(
