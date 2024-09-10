@@ -30,6 +30,11 @@ class DryFruitPageViewElement extends StatelessWidget {
                                   docId: HomeConstant.dryFruitsDocsId[index]),
                             child: DryFruitSectionWidget(
                               collectionDetails: state.collectionDetails[index],
+                              collectionDoc:
+                                  HomeConstant.dryFruitsDocsId[index],
+                              firstCollection: context
+                                  .read<GetDryFruitProductCubit>()
+                                  .collectionName,
                             ),
                           );
                         }),

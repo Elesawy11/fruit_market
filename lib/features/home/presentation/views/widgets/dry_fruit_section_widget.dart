@@ -11,9 +11,11 @@ import 'custom_product_widget.dart';
 class DryFruitSectionWidget extends StatelessWidget {
   const DryFruitSectionWidget({
     super.key,
-    required this.collectionDetails,
+    required this.collectionDetails, required this.firstCollection, required this.collectionDoc,
   });
   final CollectionDetails collectionDetails;
+  final String firstCollection;
+  final String collectionDoc;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -68,6 +70,8 @@ class DryFruitSectionWidget extends StatelessWidget {
                           : state is GetDryFruitProductSuccess
                               ? CustomProductWidget(
                                   product: state.productDetails[index],
+                                  firstCollection: firstCollection,
+                                  collectionDoc: collectionDoc,
                                 )
                               : const Center(
                                   child: Text(

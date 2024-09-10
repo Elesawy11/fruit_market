@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruit_market/features/home/data/firebase/home_firebase.dart';
 import 'package:fruit_market/features/home/presentation/views/widgets/home_view_body.dart';
 import '../cubits/dry_druit_cubit/dry_fruit_cubit.dart';
 import '../cubits/fruit_cubit/fruit_cubit.dart';
@@ -11,6 +12,9 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        HomeFirebase().sendDataToFireStore();
+      }),
       body: MultiBlocProvider(
         providers: [
           BlocProvider(

@@ -71,60 +71,66 @@ class FavoriteViewElement extends StatelessWidget {
                         price: '20',
                         image: '',
                         rate: 4,
+                        productId: '11'
                       ),
                     ),
                   ),
                 ),
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.shopping_cart,
-                        color: ColorManager.yellowCC,
-                      ),
+                SizedBox(
+                  height: 40.h,
+                  child: FittedBox(
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.shopping_cart,
+                            color: ColorManager.yellowCC,
+                          ),
+                        ),
+                        // CustomAddOrRemoveButton(
+                        //   icon: Icons.remove,
+                        //   onTap: () {},
+                        // ),
+                        // horizontalSpace(10),
+                        // Text(
+                        //   '0',
+                        //   style: Styles.font15Regular,
+                        // ),
+                        // horizontalSpace(10),
+                        // CustomAddOrRemoveButton(
+                        //   icon: Icons.add,
+                        //   onTap: () {},
+                        // ),
+                        horizontalSpace(60),
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.favorite,
+                            color: Colors.red,
+                          ),
+                        ),
+                        // GestureDetector(
+                        //   onTap: () {},
+                        //   child: Container(
+                        //     width: 68.w,
+                        //     height: 27.h,
+                        //     decoration: BoxDecoration(
+                        //         color: ColorManager.yellowCC,
+                        //         borderRadius: BorderRadius.circular(4)),
+                        //     child: Center(
+                        //       child: Text(
+                        //         'Add',
+                        //         style: Styles.font12Regular.copyWith(
+                        //           color: Colors.white,
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // )
+                      ],
                     ),
-                    // CustomAddOrRemoveButton(
-                    //   icon: Icons.remove,
-                    //   onTap: () {},
-                    // ),
-                    // horizontalSpace(10),
-                    // Text(
-                    //   '0',
-                    //   style: Styles.font15Regular,
-                    // ),
-                    // horizontalSpace(10),
-                    // CustomAddOrRemoveButton(
-                    //   icon: Icons.add,
-                    //   onTap: () {},
-                    // ),
-                    horizontalSpace(60),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.favorite,
-                        color: Colors.red,
-                      ),
-                    ),
-                    // GestureDetector(
-                    //   onTap: () {},
-                    //   child: Container(
-                    //     width: 68.w,
-                    //     height: 27.h,
-                    //     decoration: BoxDecoration(
-                    //         color: ColorManager.yellowCC,
-                    //         borderRadius: BorderRadius.circular(4)),
-                    //     child: Center(
-                    //       child: Text(
-                    //         'Add',
-                    //         style: Styles.font12Regular.copyWith(
-                    //           color: Colors.white,
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ),
-                    // )
-                  ],
+                  ),
                 )
               ],
             )

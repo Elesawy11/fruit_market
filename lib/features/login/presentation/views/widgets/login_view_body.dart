@@ -24,6 +24,9 @@ class LoginViewBody extends StatelessWidget {
         if (state is GoogleSuccess) {
           context.pushReplacement(Routes.homeView);
         }
+        if (state is GoogleFailure){
+          print("the error message of gooogle is  : ${state.errMessage}");
+        }
       },
       builder: (context, state) {
         return state is GoogleLoading
