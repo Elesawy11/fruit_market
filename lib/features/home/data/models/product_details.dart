@@ -5,9 +5,11 @@ part 'product_details.g.dart';
 class ProductDetails {
   final String name, price, image;
   final double rate;
-   bool isFavorite;
+  bool isFavorite;
+  final String productId;
 
   ProductDetails({
+    required this.productId,
     required this.name,
     required this.price,
     required this.image,

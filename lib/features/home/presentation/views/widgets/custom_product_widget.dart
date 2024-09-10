@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruit_market/core/utils/routes.dart';
+import 'package:fruit_market/features/home/data/firebase/home_firebase.dart';
 import 'package:fruit_market/features/home/data/models/product_details.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../core/utils/colors.dart';
@@ -12,9 +13,12 @@ class CustomProductWidget extends StatefulWidget {
   const CustomProductWidget({
     super.key,
     required this.product,
+    required this.firstCollection,
+    required this.collectionDoc,
   });
 
   final ProductDetails product;
+  final String firstCollection, collectionDoc;
 
   @override
   State<CustomProductWidget> createState() => _CustomProductWidgetState();
@@ -51,7 +55,14 @@ class _CustomProductWidgetState extends State<CustomProductWidget> {
                 top: 8,
                 child: GestureDetector(
                   onTap: () {
-                    widget.product.isFavorite = !widget.product.isFavorite;
+                    HomeFirebase().updateProduct(
+                        firstCollection: widget.firstCollection,
+                        collectionDoc: widget.collectionDoc,
+                        docId: widget.product.productId,
+                        data: {
+                          'isFavorite': !widget.product.isFavorite,
+                        });
+                    // widget.product.isFavorite = !widget.product.isFavorite;
                     setState(() {});
                   },
                   child: Container(

@@ -7,12 +7,12 @@ part 'get_products_state.dart';
 class GetProductsCubit extends Cubit<GetProductsState> {
   GetProductsCubit() : super(GetProductsInitial());
   List<ProductDetails> productDetails = [];
-
+String collectionName = 'fruit';
   void getFruitProduct({required String docId}) {
     emit(GetProductsLoading());
     try {
       FirebaseFirestore.instance
-          .collection('fruit')
+          .collection(collectionName)
           .doc(docId)
           .collection('products')
           .snapshots()
