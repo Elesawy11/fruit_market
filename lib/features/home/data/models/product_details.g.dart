@@ -14,6 +14,8 @@ ProductDetails _$ProductDetailsFromJson(Map<String, dynamic> json) =>
       image: json['image'] as String,
       rate: (json['rate'] as num).toDouble(),
       isFavorite: json['isFavorite'] as bool? ?? false,
+      isCartProduct: json['isCartProduct'] as bool? ?? false,
+      favoriteId: json['favoriteId'] as String?,
     );
 
 Map<String, dynamic> _$ProductDetailsToJson(ProductDetails instance) =>
@@ -23,5 +25,7 @@ Map<String, dynamic> _$ProductDetailsToJson(ProductDetails instance) =>
       'image': instance.image,
       'rate': instance.rate,
       'isFavorite': instance.isFavorite,
+      'isCartProduct': instance.isCartProduct,
       'productId': instance.productId,
+      'favoriteId': instance.favoriteId,
     };

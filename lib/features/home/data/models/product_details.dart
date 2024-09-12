@@ -5,8 +5,9 @@ part 'product_details.g.dart';
 class ProductDetails {
   final String name, price, image;
   final double rate;
-  bool isFavorite;
+  bool isFavorite, isCartProduct;
   final String productId;
+ String? favoriteId;
 
   ProductDetails({
     required this.productId,
@@ -15,6 +16,8 @@ class ProductDetails {
     required this.image,
     required this.rate,
     this.isFavorite = false,
+    this.isCartProduct = false,
+    this.favoriteId,
   });
 
   factory ProductDetails.fromJson(Map<String, dynamic> json) =>
