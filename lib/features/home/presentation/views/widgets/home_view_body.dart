@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fruit_market/features/home/presentation/cubits/get_dry_druit_product_cubit/get_dry_fruit_product_cubit.dart';
+import 'package:fruit_market/features/home/presentation/cubits/get_product_cubit/get_products_cubit.dart';
+import 'package:fruit_market/features/home/presentation/cubits/get_vegetables_product/get_vegetables_product_cubit.dart';
 
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/spacer.dart';
@@ -90,7 +94,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
           ),
           verticalSpace(29),
           SizedBox(
-            height: 604.h,
+            height: 565.h,
             child: PageView(
               scrollDirection: Axis.horizontal,
               onPageChanged: (value) {
@@ -98,10 +102,19 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 setState(() {});
               },
               controller: pageViewController,
-              children: const [
-                VegetablePageViewElement(),
-                FruitPageViewElement(),
-                DryFruitPageViewElement(),
+              children: [
+                BlocProvider(
+                  create: (context) => GetVegetablesProductCubit(),
+                  child: const VegetablePageViewElement(),
+                ),
+                BlocProvider(
+                  create: (context) => GetProductsCubit(),
+                  child: const FruitPageViewElement(),
+                ),
+                BlocProvider(
+                  create: (context) => GetDryFruitProductCubit(),
+                  child: const DryFruitPageViewElement(),
+                ),
               ],
             ),
           ),

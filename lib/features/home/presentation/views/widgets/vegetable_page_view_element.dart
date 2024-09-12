@@ -30,6 +30,11 @@ class VegetablePageViewElement extends StatelessWidget {
                                   docId: HomeConstant.vegetablesDocsId[index]),
                             child: VegetablesSectionWidget(
                               collectionDetails: state.collectionDetails[index],
+                              collectionDoc:
+                                  HomeConstant.vegetablesDocsId[index],
+                              firstCollection: context
+                                  .read<GetVegetablesProductCubit>()
+                                  .collectionName,
                             ),
                           );
                         }),

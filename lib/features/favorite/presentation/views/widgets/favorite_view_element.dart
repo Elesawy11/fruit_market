@@ -71,6 +71,7 @@ class FavoriteViewElement extends StatelessWidget {
                         price: '20',
                         image: '',
                         rate: 4,
+                        productId: '11'
                       ),
                     ),
                   ),
