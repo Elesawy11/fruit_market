@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fruit_market/features/favorite/presentation/cubits/make_product_favorite/make_product_favorite_cubit.dart';
 import 'package:fruit_market/features/home/data/models/product_details.dart';
-
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/spacer.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../home/presentation/views/widgets/custom_rating_bar.dart';
-import 'custom_Add_or_remove_button.dart';
 
 class FavoriteViewElement extends StatelessWidget {
   const FavoriteViewElement({
     super.key,
+    required this.product,
   });
-
+  final ProductDetails product;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,8 +33,8 @@ class FavoriteViewElement extends StatelessWidget {
             SizedBox(
               height: 95.h,
               width: 95.w,
-              child: Image.asset(
-                'assets/images/login.png',
+              child: Image.network(
+                product.image,
                 fit: BoxFit.fill,
               ),
             ),
@@ -41,18 +42,22 @@ class FavoriteViewElement extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Text(
-                      'Grapes',
-                      style: Styles.font14SemiBold,
-                    ),
-                    horizontalSpace(90),
-                    Text(
-                      '160 Per/ kg',
-                      style: Styles.font12SemiBold,
-                    )
-                  ],
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  child: Row(
+                    children: [
+                      Text(
+                        product.name,
+                        style: Styles.font14SemiBold,
+                      ),
+                      // horizontalSpace(40),
+                      const Spacer(),
+                      Text(
+                        '${product.price} Per/ kg',
+                        style: Styles.font12SemiBold,
+                      )
+                    ],
+                  ),
                 ),
                 verticalSpace(2),
                 Text(
@@ -66,13 +71,7 @@ class FavoriteViewElement extends StatelessWidget {
                   height: 14.h,
                   child: FittedBox(
                     child: CustomRatingBar(
-                      product: ProductDetails(
-                        name: 'apple',
-                        price: '20',
-                        image: '',
-                        rate: 4,
-                        productId: '11'
-                      ),
+                      product: product,
                     ),
                   ),
                 ),
@@ -88,23 +87,18 @@ class FavoriteViewElement extends StatelessWidget {
                             color: ColorManager.yellowCC,
                           ),
                         ),
-                        // CustomAddOrRemoveButton(
-                        //   icon: Icons.remove,
-                        //   onTap: () {},
-                        // ),
-                        // horizontalSpace(10),
-                        // Text(
-                        //   '0',
-                        //   style: Styles.font15Regular,
-                        // ),
-                        // horizontalSpace(10),
-                        // CustomAddOrRemoveButton(
-                        //   icon: Icons.add,
-                        //   onTap: () {},
-                        // ),
+    
                         horizontalSpace(60),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            context
+                                .read<MakeProductFavoriteCubit>()
+                                .updateProductAndMakedFavorite(
+                                  firstCollection: product.mainCollection,
+                                  collectionDoc: product.department,
+                                  product: product,
+                                );
+                          },
                           icon: const Icon(
                             Icons.favorite,
                             color: Colors.red,

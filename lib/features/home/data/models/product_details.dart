@@ -7,9 +7,12 @@ class ProductDetails {
   final double rate;
   bool isFavorite, isCartProduct;
   final String productId;
+  final String mainCollection,department;
  String? favoriteId;
 
-  ProductDetails({
+  ProductDetails( {
+    required this.mainCollection,
+    required this.department,
     required this.productId,
     required this.name,
     required this.price,

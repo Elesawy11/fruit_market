@@ -12,7 +12,7 @@ class GetFavoriteProductCubit extends Cubit<GetFavoriteProductState> {
     emit(GetFavoriteProductLoading());
     try {
       FirebaseFirestore.instance
-          .collection('users')
+          .collection(collectionName)
           .snapshots()
           .listen((event) {
         favoriteList.clear();
