@@ -87,7 +87,6 @@ class FavoriteViewElement extends StatelessWidget {
                             color: ColorManager.yellowCC,
                           ),
                         ),
-    
                         horizontalSpace(60),
                         IconButton(
                           onPressed: () {
@@ -104,24 +103,6 @@ class FavoriteViewElement extends StatelessWidget {
                             color: Colors.red,
                           ),
                         ),
-                        // GestureDetector(
-                        //   onTap: () {},
-                        //   child: Container(
-                        //     width: 68.w,
-                        //     height: 27.h,
-                        //     decoration: BoxDecoration(
-                        //         color: ColorManager.yellowCC,
-                        //         borderRadius: BorderRadius.circular(4)),
-                        //     child: Center(
-                        //       child: Text(
-                        //         'Add',
-                        //         style: Styles.font12Regular.copyWith(
-                        //           color: Colors.white,
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ),
-                        // )
                       ],
                     ),
                   ),

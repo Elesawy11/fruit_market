@@ -18,7 +18,7 @@ ProductDetails _$ProductDetailsFromJson(Map<String, dynamic> json) =>
       isFavorite: json['isFavorite'] as bool? ?? false,
       isCartProduct: json['isCartProduct'] as bool? ?? false,
       favoriteId: json['favoriteId'] as String?,
-    );
+    )..cartId = json['cartId'] as String?;
 
 Map<String, dynamic> _$ProductDetailsToJson(ProductDetails instance) =>
     <String, dynamic>{
@@ -32,4 +32,5 @@ Map<String, dynamic> _$ProductDetailsToJson(ProductDetails instance) =>
       'mainCollection': instance.mainCollection,
       'department': instance.department,
       'favoriteId': instance.favoriteId,
+      'cartId': instance.cartId,
     };

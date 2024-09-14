@@ -8,7 +8,7 @@ class ProductDetails {
   bool isFavorite, isCartProduct;
   final String productId;
   final String mainCollection,department;
- String? favoriteId;
+ String? favoriteId,cartId;
 
   ProductDetails( {
     required this.mainCollection,
