@@ -31,6 +31,10 @@ class FruitPageViewElement extends StatelessWidget {
                                   docId: HomeConstant.fruitDocsId[index]),
                             child: FruitSectionWidget(
                               collectionDetails: state.collectionDetails[index],
+                              collectionDoc: HomeConstant.fruitDocsId[index],
+                              firstCollection: context
+                                  .read<GetProductsCubit>()
+                                  .collectionName,
                             ),
                           );
                         }),

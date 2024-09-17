@@ -49,6 +49,10 @@ class HomeFirebase {
     //required String docID
     //required String secondCollection
     String imageUrl = await getImageUrlStorage();
+    // CollectionReference allProducts = FirebaseFirestore.instance
+    //     .collection('Dry Fruits')
+    //     .doc('Dehiscent Dry Fruits')
+    //     .collection('products');
     final product = FirebaseFirestore.instance
         .collection('Dry Fruits')
         .doc('Dehiscent Dry Fruits')
@@ -59,7 +63,36 @@ class HomeFirebase {
           toFirestore: (product, _) => product.toJson(),
         );
 
-    await product.add(ProductDetails(
-        name: 'Ahmed', price: '15000', image: imageUrl, rate: 5));
+    await product
+        .add(
+          ProductDetails(
+            name: 'Ahmed',
+            price: '15000',
+            image: imageUrl,
+            rate: 5,
+            productId: '12',
+            mainCollection: 'fruit',
+            department: 'melons'
+          ),
+        )
+        .then(
+          (value) => product.doc(value.id).update(
+            {'productId': value.id},
+          ),
+        );
+  }
+
+  Future<void> updateProduct({
+    required String docId,
+    required String firstCollection,
+    required String collectionDoc,
+    required Map<String, dynamic> data,
+  }) async {
+    final product = FirebaseFirestore.instance
+        .collection(firstCollection)
+        .doc(collectionDoc)
+        .collection('products');
+
+    await product.doc(docId).update(data);
   }
 }
