@@ -8,4 +8,6 @@ abstract class Routes {
   static String shoppingCartView = '/shoppingCartView';
   static String favoriteView = '/favoriteView';
   static String myAccountView = '/myAccountView';
+  static String myOrderView = 'myOrdertView';
+  static String settings = 'settings';
 }

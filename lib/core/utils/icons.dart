@@ -10,4 +10,7 @@ abstract class IconsImage {
   static String shoppingBag = 'assets/icons/shopping_bag.svg';
   static String shoppingCart = 'assets/icons/shopping_cart.svg';
   static String rateUs = 'assets/icons/rate_us.svg';
+  static String secure = 'assets/icons/secure.svg';
+  static String deactive = 'assets/icons/deactive.svg';
+  static String delete = 'assets/icons/delete.svg';
 }

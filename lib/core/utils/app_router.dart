@@ -4,6 +4,8 @@ import 'package:fruit_market/features/home/data/models/product_details.dart';
 import 'package:fruit_market/features/home/presentation/views/product_details_view.dart';
 import 'package:fruit_market/features/favorite/presentation/views/favorite_view.dart';
 import 'package:fruit_market/features/home/presentation/views/home_view.dart';
+import 'package:fruit_market/features/my_account/presentation/views/my_order_view.dart';
+import 'package:fruit_market/features/my_account/presentation/views/setting_view.dart';
 import 'package:fruit_market/main_view.dart';
 import 'package:fruit_market/features/login/presentation/views/create_account_view.dart';
 import 'package:fruit_market/features/login/presentation/views/login_view.dart';
@@ -90,9 +92,18 @@ abstract class AppRouter {
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: Routes.myAccountView,
-                builder: (context, state) => const MyAccountView(),
-              ),
+                  path: Routes.myAccountView,
+                  builder: (context, state) => const MyAccountView(),
+                  routes: [
+                    GoRoute(
+                      path: Routes.myOrderView,
+                      builder: (context, state) => const MyOrderView(),
+                    ),
+                    GoRoute(
+                      path: Routes.settings,
+                      builder: (context, state) => const SettingView(),
+                    ),
+                  ]),
             ],
           ),
         ],
