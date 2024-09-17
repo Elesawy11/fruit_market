@@ -26,6 +26,7 @@ class CustomAddOrRemoveButton extends StatelessWidget {
         ),
         child: Icon(
           icon,
+          color: ColorManager.yellowCC,
         ),
       ),
     );
