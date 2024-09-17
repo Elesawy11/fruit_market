@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruit_market/core/utils/routes.dart';
+import 'package:fruit_market/features/favorite/presentation/cubits/make_product_in_cart/make_product_in_cart_cubit.dart';
+import 'package:fruit_market/features/home/data/models/product_details.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utils/colors.dart';
@@ -11,8 +14,9 @@ import '../../../../favorite/presentation/views/widgets/custom_Add_or_remove_but
 class ShoppingCartElement extends StatelessWidget {
   const ShoppingCartElement({
     super.key,
+    required this.product,
   });
-
+  final ProductDetails product;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,8 +36,8 @@ class ShoppingCartElement extends StatelessWidget {
             SizedBox(
               height: 95.h,
               width: 95.w,
-              child: Image.asset(
-                'assets/images/login.png',
+              child: Image.network(
+                product.image,
                 fit: BoxFit.fill,
               ),
             ),
@@ -44,12 +48,12 @@ class ShoppingCartElement extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      'Grapes',
+                      product.name,
                       style: Styles.font14SemiBold,
                     ),
                     horizontalSpace(90),
                     Text(
-                      '160 Per/ kg',
+                      '${product.price} Per/ kg',
                       style: Styles.font12SemiBold,
                     )
                   ],
@@ -81,7 +85,14 @@ class ShoppingCartElement extends StatelessWidget {
                     ),
                     horizontalSpace(60),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context
+                            .read<MakeProductInCartCubit>()
+                            .updateProductAndMakedFavorite(
+                                firstCollection: product.mainCollection,
+                                collectionDoc: product.department,
+                                product: product);
+                      },
                       icon: const Icon(
                         Icons.delete,
                         // color: ColorManager.yellowCC,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruit_market/core/utils/routes.dart';
-import 'package:fruit_market/features/home/data/firebase/home_firebase.dart';
+import 'package:fruit_market/features/favorite/presentation/cubits/make_product_in_cart/make_product_in_cart_cubit.dart';
 import 'package:fruit_market/features/home/data/models/product_details.dart';
 import 'package:fruit_market/features/favorite/presentation/cubits/make_product_favorite/make_product_favorite_cubit.dart';
 import 'package:go_router/go_router.dart';
@@ -43,9 +43,9 @@ class CustomProductWidget extends StatelessWidget {
                   height: 143.h,
                 ),
               ),
-    
+
               // Icon Widget
-    
+
               Positioned(
                 right: 8,
                 top: 8,
@@ -58,15 +58,6 @@ class CustomProductWidget extends StatelessWidget {
                           collectionDoc: collectionDoc,
                           product: product,
                         );
-                    // HomeFirebase().updateProduct(
-                    //     firstCollection: firstCollection,
-                    //     collectionDoc: collectionDoc,
-                    //     docId: product.productId,
-                    //     data: {
-                    //       'isFavorite': !product.isFavorite,
-                    //     });
-    
-                    // setState(() {});
                   },
                   child: Container(
                     height: 28.h,
@@ -94,14 +85,13 @@ class CustomProductWidget extends StatelessWidget {
                 top: 8,
                 child: GestureDetector(
                   onTap: () {
-                    HomeFirebase().updateProduct(
-                        firstCollection: firstCollection,
-                        collectionDoc: collectionDoc,
-                        docId: product.productId,
-                        data: {
-                          'isCartProduct': !product.isCartProduct,
-                        });
-                    // setState(() {});
+                    context
+                        .read<MakeProductInCartCubit>()
+                        .updateProductAndMakedFavorite(
+                          firstCollection: firstCollection,
+                          collectionDoc: collectionDoc,
+                          product: product,
+                        );
                   },
                   child: Container(
                     height: 28.h,

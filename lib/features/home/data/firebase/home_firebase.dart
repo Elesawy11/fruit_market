@@ -71,6 +71,8 @@ class HomeFirebase {
             image: imageUrl,
             rate: 5,
             productId: '12',
+            mainCollection: 'fruit',
+            department: 'melons'
           ),
         )
         .then(

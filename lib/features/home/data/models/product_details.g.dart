@@ -8,6 +8,8 @@ part of 'product_details.dart';
 
 ProductDetails _$ProductDetailsFromJson(Map<String, dynamic> json) =>
     ProductDetails(
+      mainCollection: json['mainCollection'] as String,
+      department: json['department'] as String,
       productId: json['productId'] as String,
       name: json['name'] as String,
       price: json['price'] as String,
@@ -16,7 +18,7 @@ ProductDetails _$ProductDetailsFromJson(Map<String, dynamic> json) =>
       isFavorite: json['isFavorite'] as bool? ?? false,
       isCartProduct: json['isCartProduct'] as bool? ?? false,
       favoriteId: json['favoriteId'] as String?,
-    );
+    )..cartId = json['cartId'] as String?;
 
 Map<String, dynamic> _$ProductDetailsToJson(ProductDetails instance) =>
     <String, dynamic>{
@@ -27,5 +29,8 @@ Map<String, dynamic> _$ProductDetailsToJson(ProductDetails instance) =>
       'isFavorite': instance.isFavorite,
       'isCartProduct': instance.isCartProduct,
       'productId': instance.productId,
+      'mainCollection': instance.mainCollection,
+      'department': instance.department,
       'favoriteId': instance.favoriteId,
+      'cartId': instance.cartId,
     };
