@@ -20,7 +20,7 @@ class ProductDetailsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () => context.pushReplacement(Routes.homeView),
+          onPressed: () => context.go(Routes.homeView),
           icon: const Icon(
             Icons.arrow_back,
             color: Colors.white,

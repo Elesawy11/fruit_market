@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruit_market/core/utils/routes.dart';
-import 'package:fruit_market/features/home/data/firebase/home_firebase.dart';
+import 'package:fruit_market/features/favorite/presentation/cubits/make_product_in_cart/make_product_in_cart_cubit.dart';
 import 'package:fruit_market/features/home/data/models/product_details.dart';
+import 'package:fruit_market/features/favorite/presentation/cubits/make_product_favorite/make_product_favorite_cubit.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/spacer.dart';
 import '../../../../../core/utils/styles.dart';
 import 'custom_rating_bar.dart';
 
-class CustomProductWidget extends StatefulWidget {
+class CustomProductWidget extends StatelessWidget {
   const CustomProductWidget({
     super.key,
     required this.product,
@@ -19,12 +21,6 @@ class CustomProductWidget extends StatefulWidget {
 
   final ProductDetails product;
   final String firstCollection, collectionDoc;
-
-  @override
-  State<CustomProductWidget> createState() => _CustomProductWidgetState();
-}
-
-class _CustomProductWidgetState extends State<CustomProductWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -38,11 +34,11 @@ class _CustomProductWidgetState extends State<CustomProductWidget> {
                 onTap: () {
                   context.go(
                     Routes.detailsView,
-                    extra: widget.product,
+                    extra: product,
                   );
                 },
                 child: Image.network(
-                  widget.product.image,
+                  product.image,
                   width: 118.w,
                   height: 143.h,
                 ),
@@ -55,15 +51,13 @@ class _CustomProductWidgetState extends State<CustomProductWidget> {
                 top: 8,
                 child: GestureDetector(
                   onTap: () {
-                    HomeFirebase().updateProduct(
-                        firstCollection: widget.firstCollection,
-                        collectionDoc: widget.collectionDoc,
-                        docId: widget.product.productId,
-                        data: {
-                          'isFavorite': !widget.product.isFavorite,
-                        });
-                    // widget.product.isFavorite = !widget.product.isFavorite;
-                    setState(() {});
+                    context
+                        .read<MakeProductFavoriteCubit>()
+                        .updateProductAndMakedFavorite(
+                          firstCollection: firstCollection,
+                          collectionDoc: collectionDoc,
+                          product: product,
+                        );
                   },
                   child: Container(
                     height: 28.h,
@@ -72,7 +66,7 @@ class _CustomProductWidgetState extends State<CustomProductWidget> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15.r),
                     ),
-                    child: widget.product.isFavorite
+                    child: product.isFavorite
                         ? Icon(
                             Icons.favorite,
                             size: 18.r,
@@ -91,8 +85,13 @@ class _CustomProductWidgetState extends State<CustomProductWidget> {
                 top: 8,
                 child: GestureDetector(
                   onTap: () {
-                    // widget.product.isFavorite = !widget.product.isFavorite;
-                    // setState(() {});
+                    context
+                        .read<MakeProductInCartCubit>()
+                        .updateProductAndMakedFavorite(
+                          firstCollection: firstCollection,
+                          collectionDoc: collectionDoc,
+                          product: product,
+                        );
                   },
                   child: Container(
                     height: 28.h,
@@ -101,16 +100,16 @@ class _CustomProductWidgetState extends State<CustomProductWidget> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15.r),
                     ),
-                    child: widget.product.isFavorite
+                    child: product.isCartProduct
                         ? Icon(
                             Icons.shopping_cart,
                             size: 18.r,
-                            color: Colors.red,
+                            color: ColorManager.yellowED,
                           )
                         : Icon(
-                            Icons.shopping_cart_outlined,
+                            Icons.add_shopping_cart,
                             size: 18.r,
-                            color: ColorManager.yellowED,
+                            color: ColorManager.grey83,
                           ),
                   ),
                 ),
@@ -118,15 +117,15 @@ class _CustomProductWidgetState extends State<CustomProductWidget> {
             ],
           ),
           verticalSpace(8),
-          CustomRatingBar(product: widget.product),
+          CustomRatingBar(product: product),
           verticalSpace(5),
           Text(
-            widget.product.name,
+            product.name,
             style: Styles.font14SemiBold,
           ),
           verticalSpace(5),
           Text(
-            '${widget.product.price}\$ Per/ kg',
+            '${product.price}\$ Per/ kg',
             style: Styles.font12Regular,
           )
         ],
